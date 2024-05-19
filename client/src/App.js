@@ -23,6 +23,7 @@ function App() {
         <div>
             <h1>React + Node.js Integration</h1>
             <p>{data.message}</p>
+            <h2 className="font-header text-3xl">hello</h2>
         </div>
     );
 }
