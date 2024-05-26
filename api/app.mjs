@@ -10,16 +10,20 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 const app = express()
 
 app.use(bodyParser.json());
-
-// app.use(express.static(path.join(__dirname, '..', 'public')))
 // app.use(express.json());
-
-// app.set('view engine', 'hbs')
 app.use(cors())
 
+// temp variable before database implementation
+let count = 0
 
-app.get('/message', (req, res) => {
-    const data = { message: 'Hello from Node.js backend!' };
+app.get('/', (req, res) => {
+    const data = { clicks: count }
+    res.json(data)
+})
+
+app.post('/click', (req, res) => {
+    count = parseInt(req.body.clicks)
+    const data = { clicks: count };
     res.json(data);
 })
 
