@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 function App() {
   let [data, setData] = useState({});
+  let [user, setUser] = useState()
   const clickRef = useRef(0) // keeps track of clicks displayed
 
   const getInitialData = async () => {
@@ -17,6 +18,13 @@ function App() {
 
   useEffect(() => { // gets initial data from server side
     getInitialData()
+  }, [])
+
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    if (user) {
+      setUser(user)
+    }
   }, [])
 
   useEffect(() => { // update to server everry set interval
@@ -43,7 +51,7 @@ function App() {
     const curr_clicks = data.clicks
     setData({ clicks: curr_clicks + 1 })
   }
-  
+
     return (
         <div>
             <h1>React + Node.js Integration</h1>
