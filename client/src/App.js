@@ -16,6 +16,8 @@ function App() {
     }
   }
 
+  //testing git on mac again one more time
+
   useEffect(() => { // gets initial data from server side
     getInitialData()
   }, [])
