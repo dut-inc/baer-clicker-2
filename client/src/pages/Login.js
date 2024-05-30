@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate();
     const loginRef = useRef('')
     const passwordRef = useRef('')
 
@@ -16,9 +18,10 @@ function Login() {
         })
       const user = await response.json()
       localStorage.setItem('user', user.user)
+      navigate("/")
     //   console.log(user.user)
     }
-
+    
     return (
         <div>
             <input ref={loginRef} type="text" id="username" name="username" placeholder="username"></input> <br></br>

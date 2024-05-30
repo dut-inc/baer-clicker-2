@@ -24,7 +24,11 @@ app.use(session({
 
 app.use(bodyParser.json());
 // app.use(express.json());
-app.use(cors())
+// app.use(cors({ 
+//     origin: "http://localhost:3000/", 
+//     credentials: true 
+//    }));
+app.use(cors());
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -63,9 +67,10 @@ app.post('/login', (req, res, next) => {
             if (err) {
                 return next(err)
             }
-
+            
             return res.json({ user })
         })
+        // res.render("/")
     })(req, res, next)
 })
 
