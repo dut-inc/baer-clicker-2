@@ -24,10 +24,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 // app.use(express.json());
-// app.use(cors({ 
-//     origin: "http://localhost:3000/", 
-//     credentials: true 
-//    }));
+
 app.use(cors());
 
 app.use(passport.initialize())
@@ -70,13 +67,16 @@ app.post('/login', (req, res, next) => {
             
             return res.json({ user })
         })
-        // res.render("/")
     })(req, res, next)
 })
 
 app.post('/register', function (req, res, next) {
-    User.register({ username: req.body.username, active: false }, req.body.password )
-    res.json({ status: "REGISTER SUCCESSFUL" })
+    User.register({ username: req.body.username, active: false }, req.body.password, (err) => {
+        if (err) {
+            return res.json({ status: false })
+        }
+        return res.json({ status: true })
+    })
 })
 
 const port = process.env.PORT || 3001
