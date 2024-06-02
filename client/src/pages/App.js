@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import UpgradeModule from '../components/upgrademodule';
 
 function App() {
   let [data, setData] = useState({});
@@ -54,10 +55,16 @@ function App() {
 
     return (
         <div>
-            <h1>React + Node.js Integration</h1>
+          <div className='border-primary border-4 h-[100%] w-[50%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
             <div onClick={() => handleClick()} className="">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
-            <h2 className="font-header text-3xl">hello</h2>
+          </div>
+          <div className='border-4 border-primary w-[50%] float-right'>
+            <div className='border-4 border-background text-center'>
+              Hunting
+            </div>
+            <UpgradeModule />
+          </div>
         </div>
     );
 }
