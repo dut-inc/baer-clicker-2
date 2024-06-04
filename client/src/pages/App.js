@@ -89,7 +89,7 @@ function App() {
             </Helmet>
           <div className='border-leavesdark border-4 h-screen w-[50%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
-            <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
+            <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
           </div>
           <div className='border-4 border-leavesdark w-[50%] h-screen float-right'>
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
