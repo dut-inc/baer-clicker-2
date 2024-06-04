@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import UpgradeModule from '../components/upgrademodule';
+import {Helmet} from 'react-helmet';
+import WoermModule from '../components/woermModule';
+import BaerryModule from '../components/baerryModule';
 
 function App() {
   let [data, setData] = useState({});
@@ -55,15 +57,19 @@ function App() {
 
     return (
         <div>
-          <div className='border-primary border-4 h-[100%] w-[50%] float-left'>
+          <Helmet>
+                <style>{'body { background-color: white; }'}</style>
+            </Helmet>
+          <div className='border-leavesdark border-4 h-screen w-[50%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
-            <div onClick={() => handleClick()} className="">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
+            <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
           </div>
-          <div className='border-4 border-primary w-[50%] float-right'>
-            <div className='border-4 border-background text-center'>
+          <div className='border-4 border-leavesdark w-[50%] h-screen float-right'>
+            <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
-            <UpgradeModule />
+            <WoermModule />
+            <BaerryModule />
           </div>
         </div>
     );
