@@ -2,11 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import {Helmet} from 'react-helmet';
 import WoermModule from '../components/woermModule';
 import BaerryModule from '../components/baerryModule';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   let [data, setData] = useState({});
   let [user, setUser] = useState()
   const clickRef = useRef(0) // keeps track of clicks displayed
+  const navigate = useNavigate();
+  let foodInfo = {
+    //chance,calories,count
+    woerm: [350,1,-1],
+    baerry: [50, 10, -1]
+  };
+  // !check auth
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user")
+  //   if (user) {
+  //     setUser(user)
+  //   }
+  //   else {
+  //     navigate("/login")
+  //   }
+  // })
+  // !
 
   const getInitialData = async () => {
     try {
@@ -51,8 +69,17 @@ function App() {
 }, []); 
 
   const handleClick = () => {
+    huntResult()
     const curr_clicks = data.clicks
     setData({ clicks: curr_clicks + 1 })
+  }
+
+  const huntResult = () => {
+    for (let food in foodInfo) {
+      let chance = foodInfo[food][0]
+      let rand = Math.random()*100
+      foodInfo[food][2] = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
+    }
   }
 
     return (
