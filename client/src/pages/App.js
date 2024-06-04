@@ -1,9 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   let [data, setData] = useState({});
   let [user, setUser] = useState()
   const clickRef = useRef(0) // keeps track of clicks displayed
+  const navigate = useNavigate();
+  
+  // !check auth
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user")
+  //   if (user) {
+  //     setUser(user)
+  //   }
+  //   else {
+  //     navigate("/login")
+  //   }
+  // })
+  // !
 
   const getInitialData = async () => {
     try {
