@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {Helmet} from 'react-helmet';
+import WoermModule from '../components/woermModule';
+import BaerryModule from '../components/baerryModule';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
@@ -81,10 +84,20 @@ function App() {
 
     return (
         <div>
-            <h1>React + Node.js Integration</h1>
+          <Helmet>
+                <style>{'body { background-color: white; }'}</style>
+            </Helmet>
+          <div className='border-leavesdark border-4 h-screen w-[50%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
-            <div onClick={() => handleClick()} className="">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
-            <h2 className="font-header text-3xl">hello</h2>
+            <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
+          </div>
+          <div className='border-4 border-leavesdark w-[50%] h-screen float-right'>
+            <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
+              Hunting
+            </div>
+            <WoermModule />
+            <BaerryModule />
+          </div>
         </div>
     );
 }
