@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import {Helmet} from 'react-helmet';
 import WoermModule from '../components/woermModule';
 import BaerryModule from '../components/baerryModule';
+import PaenutzModule from '../components/paenutzModule';
+import SaelmonModule from '../components/saelmonModule';
 
 function App() {
   let [data, setData] = useState({});
@@ -68,8 +70,18 @@ function App() {
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
+            <div className='border-b'>
             <WoermModule />
+            </div>
+            <div classname='border-b'>
             <BaerryModule />
+            </div>
+            <div classname='border-b'>
+            <PaenutzModule />
+            </div>
+            <div classname='border-b'>
+            <SaelmonModule />
+            </div>
           </div>
         </div>
     );
