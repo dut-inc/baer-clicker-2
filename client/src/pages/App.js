@@ -4,6 +4,9 @@ import WoermModule from '../components/woermModule';
 import BaerryModule from '../components/baerryModule';
 import PaenutzModule from '../components/paenutzModule';
 import SaelmonModule from '../components/saelmonModule';
+import NickaelModule from '../components/nickaelModule';
+import GyaetchModule from '../components/gyaetchModule';
+import UraeniumModule from '../components/uraeniumModule';
 
 function App() {
   let [data, setData] = useState({});
@@ -66,21 +69,30 @@ function App() {
             <div ref = {clickRef}>{data.clicks}</div>
             <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
           </div>
-          <div className='border-4 border-leavesdark w-[50%] h-screen float-right'>
-            <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
+          <div className='border-4 border-leavesdark w-[50%] h-screen float-right overflow-y-scroll'>
+            <div className='border-4 border-leavesdark  w-full text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
             <div className='border-b'>
             <WoermModule />
             </div>
-            <div classname='border-b'>
+            <div className='border-b'>
             <BaerryModule />
             </div>
-            <div classname='border-b'>
+            <div className='border-b'>
             <PaenutzModule />
             </div>
-            <div classname='border-b'>
+            <div className='border-b'>
             <SaelmonModule />
+            </div>
+            <div className='border-b'>
+            <NickaelModule />
+            </div>
+            <div className='border-b'>
+            <GyaetchModule />
+            </div>
+            <div className='border-b'>
+            <UraeniumModule />
             </div>
           </div>
         </div>
