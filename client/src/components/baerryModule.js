@@ -1,21 +1,27 @@
-import baerry from '../assets/baerry.png'
+import woerm from '../assets/woerm.png'
 import basicBaer from '../assets/basicBaer.png'
 
-export default function BaerryModule(){
+export default function BaerryModule({foods}){
     return (
-        <div className="border-wood border-[3px] w-[100%] h-28 bg-[url('./assets/moduleBG.png')] bg-bottom grayscale">
-            <img className="relative top-2 float-left" src={baerry}/>
-            <img className="w-40 fixed bottom-[-17px] right-[230px] float-left" src={basicBaer}/>
-            <div className='border-wood border-l-[3px] w-[30%] float-right h-[100%] text-center font-default p-1 bg-[#904B19]'>
-                <h1 className='text-2xl'>
-                    Baerry
-                </h1>
-                <h2 className='text-base'> 
-                    Lvl 1: 50% Success
-                </h2>
-                <p className='text-sm italic'>
-                    The basic source of any strong baer's nutrition.
-                </p>
+        <div>
+        {foods.map((food) => (
+            createModule(food)
+            ))}
+        </div>
+    );
+}
+
+function createModule(food) {
+    return (
+    <div className="border-wood border-4 w-[100%] h-28 bg-[url('./assets/moduleBG.png')] bg-bottom bg-left bg-contain">
+            <img className="float-left" src={woerm}/>
+            <div className="float-right h-[100%]">
+                <img className="w-40 relative top-30 float-left" src={basicBaer}/>
+                <div className='border-wood border-l-4 float-right h-[100%] min-w-fit font-default bg-[#904B19] text-center'>
+                    <h1 className='text-2xl'>{food.title}</h1>
+                    <h2 className='text-base'>{food.levelInfo}</h2>
+                    <p className='text-sm'>{food.description}</p>
+                </div>
             </div>
         </div>
     );
