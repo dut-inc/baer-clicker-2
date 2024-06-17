@@ -69,8 +69,9 @@ function App() {
             <div ref = {clickRef}>{data.clicks}</div>
             <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
           </div>
-          <div className='border-4 border-leavesdark w-[50%] h-screen float-right overflow-y-scroll'>
-            <div className='border-4 border-leavesdark  w-full text-center bg-[#779025] font-default text-4xl'>
+          
+          <div className='border-4 border-leavesdark w-[50%] h-screen float-right overscroll-y-contain overflow-y-scroll content-end'>
+          <div className='border-4 border-leavesdark  w-full text-center bg-[#779025] font-default text-4xl sticky'>
               Hunting
             </div>
             <div className='border-b'>

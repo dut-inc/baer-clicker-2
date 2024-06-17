@@ -5,7 +5,7 @@ export default function PaenutzModule(){
     return (
         <div className="border-wood border-[3px] w-[100%] h-28 bg-[url('./assets/moduleBG.png')] bg-bottom grayscale">
             <img className="relative top-6 right-28 float-left" src={paenut}/>
-            <img className="w-40 relative bottom-2 left-[77px] float-left" src={basicBaer}/>
+            <img className="w-40 float-left" src={basicBaer}/>
             <div className='border-wood border-l-[3px] w-[30%] float-right h-[100%] text-center font-default p-1 bg-[#904B19]'>
                 <h1 className='text-2xl'>
                     Paenutz
