@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Helmet} from 'react-helmet';
-import WoermModule from '../components/woermModule';
-import BaerryModule from '../components/baerryModule';
-import PaenutzModule from '../components/paenutzModule';
-import SaelmonModule from '../components/saelmonModule';
-import NickaelModule from '../components/nickaelModule';
-import GyaetchModule from '../components/gyaetchModule';
-import UraeniumModule from '../components/uraeniumModule';
+import UpgradeModule from '../components/upgradeModule';
 
 function App() {
   let [data, setData] = useState({});
@@ -60,41 +54,37 @@ function App() {
     setData({ clicks: curr_clicks + 1 })
   }
 
+  // const huntResult = () => {
+  //   for (let food in foodInfo) {
+  //     let chance = foodInfo[food][0]
+  //     let rand = Math.random()*100
+  //     foodInfo[food][2] = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
+  //   }
+  // }
+
+
+  const foodList = [
+    { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now..." },
+    { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition." },
+    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious."},
+    { title: "Gyatch", levelInfo: "Lvl 1: 100% Gyat", description: "Have you seen Yinlin bro oh my lord" },
+    
+  ]
     return (
         <div>
           <Helmet>
                 <style>{'body { background-color: white; }'}</style>
             </Helmet>
-          <div className='border-leavesdark border-4 h-screen w-[50%] float-left'>
+          <div className='border-leavesdark border-4 h-screen w-[60%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
             <div onClick={() => handleClick()} className="font-default">BUTTON CLICKINGNSDIOFJSODIFJWOEIFJW</div>
           </div>
-          
-          <div className='border-4 border-leavesdark w-[50%] h-screen float-right overscroll-y-contain overflow-y-scroll content-end'>
-          <div className='border-4 border-leavesdark  w-full text-center bg-[#779025] font-default text-4xl sticky'>
+          <div className='border-4 border-leavesdark w-[40%] h-screen float-right bg-wood'>
+            <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
-            <div className='border-b'>
-            <WoermModule />
-            </div>
-            <div className='border-b'>
-            <BaerryModule />
-            </div>
-            <div className='border-b'>
-            <PaenutzModule />
-            </div>
-            <div className='border-b'>
-            <SaelmonModule />
-            </div>
-            <div className='border-b'>
-            <NickaelModule />
-            </div>
-            <div className='border-b'>
-            <GyaetchModule />
-            </div>
-            <div className='border-b'>
-            <UraeniumModule />
-            </div>
+            {/* <WoermModule title="woerm"/> */}
+           <UpgradeModule foods={foodList}/>
           </div>
         </div>
     );
