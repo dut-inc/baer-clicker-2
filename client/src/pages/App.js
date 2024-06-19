@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Helmet} from 'react-helmet';
-import UpgradeModule from '../components/upgradeModule';
+import UpgradeModule from '../components/upgradeModule.js';
+import baerry from '../assets/baerry.png'
+import gyaetch from '../assets/gyaetch.png'
+import nickael from '../assets/nickael.png'
+import paenut from '../assets/paenut.png'
+import saelmon from '../assets/saelmon.png'
+import uraenium from '../assets/uraenium.png'
+import woerm from '../assets/woerm.png'
 
 function App() {
   let [data, setData] = useState({});
@@ -64,13 +71,13 @@ function App() {
 
 
   const foodList = [
-    { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now..." },
-    { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition." },
-    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious." }, 
-    { title: "Gyatch", levelInfo: "Lvl 1: 100% Gyat", description: "Have you seen Yinlin bro oh my lord" },
-    { title: "Nickael", levelInfo: "Lvl 1: 10% Syccess", description: "Eating nickael reminds the baer of his best friend." },
-    { title: "Saelmon", levelInfo: "Lvl 1: 5% Success", description: "Papa Baer always said saelmon made you smarter." },
-    { title: "Uraenium", levelInfo: "Lvl 1: 0.5% Success", description: "Just a little bite wouldn't hurt, right?"}
+    { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now...", image: woerm },
+    { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition.", image: baerry },
+    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious.", image: paenut }, 
+    { title: "Gyatch", levelInfo: "Lvl 1: 100% Gyat", description: "Have you seen Yinlin bro oh my lord", image: gyaetch },
+    { title: "Nickael", levelInfo: "Lvl 1: 10% Syccess", description: "Eating nickael reminds the baer of his best friend.", image: nickael },
+    { title: "Saelmon", levelInfo: "Lvl 1: 5% Success", description: "Papa Baer always said saelmon made you smarter.", image: saelmon },
+    { title: "Uraenium", levelInfo: "Lvl 1: 0.5% Success", description: "Just a little bite wouldn't hurt, right?", image: uraenium }
   ]
     return (
         <div>
