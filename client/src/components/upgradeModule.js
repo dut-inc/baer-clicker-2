@@ -1,5 +1,11 @@
-import woerm from '../assets/woerm.png'
+import baerry from '../assets/baerry.png'
 import basicBaer from '../assets/basicBaer.png'
+import gyaetch from '../assets/gyaetch.png'
+import nickael from '../assets/nickael.png'
+import paenut from '../assets/paenut.png'
+import saelmon from '../assets/saelmon.png'
+import uraenium from '../assets/uraenium.png'
+import woerm from '../assets/woerm.png'
 
 export default function BaerryModule({foods}){
     return (
@@ -11,7 +17,7 @@ export default function BaerryModule({foods}){
     );
 }
 
-function createModule(food) {
+function createModule(food){
     return (
     <div className="flex justify-end border-wood border-4 h-28 bg-[url('./assets/moduleBG.png')] bg-bottom bg-left bg-contain">
             <img className="" src={woerm}/>

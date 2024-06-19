@@ -66,9 +66,11 @@ function App() {
   const foodList = [
     { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now..." },
     { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition." },
-    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious."},
+    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious." }, 
     { title: "Gyatch", levelInfo: "Lvl 1: 100% Gyat", description: "Have you seen Yinlin bro oh my lord" },
-    
+    { title: "Nickael", levelInfo: "Lvl 1: 10% Syccess", description: "Eating nickael reminds the baer of his best friend." },
+    { title: "Saelmon", levelInfo: "Lvl 1: 5% Success", description: "Papa Baer always said saelmon made you smarter." },
+    { title: "Uraenium", levelInfo: "Lvl 1: 0.5% Success", description: "Just a little bite wouldn't hurt, right?"}
   ]
     return (
         <div>
@@ -83,7 +85,6 @@ function App() {
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
-            {/* <WoermModule title="woerm"/> */}
            <UpgradeModule foods={foodList}/>
           </div>
         </div>
