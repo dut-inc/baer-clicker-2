@@ -20,7 +20,7 @@ export default function BaerryModule({foods}){
 function createModule(food){
     return (
     <div className="flex items-end justify-stretch border-wood bg-[url('./assets/moduleBG.png')] bg-[bottom_left_45dvh] bg-cover bg-no-repeat">
-            <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default bg-[#904B19] text-center w-[60%]'>
+            <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default bg-[#904B19] w-[60%] place-content-center items-center'>
                 <h1 className='text-2xl'>{food.title}</h1>
                 <h2 className='text-base'>{food.levelInfo}</h2>
                 <p className='text-sm'>{food.description}</p>
