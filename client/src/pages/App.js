@@ -28,8 +28,9 @@ function App() {
 
   const getInitialData = async () => {
     try {
+      const user = localStorage.getItem('user')
       console.log("GETTING INITIAL DATA")
-      const response = await fetch('http://127.0.0.1:3001/')
+      const response = await fetch(`http://127.0.0.1:3001/?user=${user}`)
       const newData = await response.json()
       setData(newData)
     } catch (error) {
@@ -51,6 +52,7 @@ function App() {
   useEffect(() => { // update to server everry set interval
 
     console.log(`initializing interval`);
+    const user = localStorage.getItem('user')
     const interval = setInterval(async () => {
       console.log(clickRef.current.textContent)
       const response = await fetch('http://127.0.0.1:3001/click', {
@@ -58,7 +60,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ clicks: clickRef.current.textContent })
+        body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
     }, 5000); // 1000 is 1 second
   
