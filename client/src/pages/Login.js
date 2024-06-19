@@ -20,7 +20,7 @@ function Login() {
       const user = await response.json()
 
       if (user.user) {
-        localStorage.setItem('user', user.user)
+        localStorage.setItem('user', user.user.username)
         navigate("/")
       } else {
         setStatus("LOGIN FAILED")
