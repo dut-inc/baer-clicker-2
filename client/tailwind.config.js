@@ -3,16 +3,16 @@ module.exports = {
   content: ["../public/index.html", "./src/**/*.{html,js}"],
   theme: {
     colors: {
-      text: "#050315",
-      background: "#FBFEFF",
-      primary: "#002866",
-      secondary: "#D8D8D8",
-      accent: "#009BA8",
+      text: "#141C11",
+      textalt: "#EAF1F3",
+      wood: "#733F1A",
+      woodsecondary: "#DA9432",
+      leaveslight: "#E7E8A6",
+      leavesdark: "#5C6B28",
     },
     extend: {
       fontFamily: {
-        header: ["Nunito", "sans-serif"],
-        body: ["PT+Sans", "serif"],
+        default: ["MedievalSharp", "sans-serif"],
       },
     },
   },
