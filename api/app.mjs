@@ -28,6 +28,7 @@ app.use(cors(
 
 const User = mongoose.model('User')
 const Clicks = mongoose.model('Clicks')
+const Currency = mongoose.model('Currency')
 
 app.use(session({
     secret: "BAERBALEJOEIFJOSIEJF",

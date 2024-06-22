@@ -13,7 +13,14 @@ const clickSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 })
 
+const currencySchema = mongoose.Schema({
+    woerms: { type: Number, required: true },
+    spiritBaers: { type: Number, required: true },
+    rainbowTrouts: { type: Number, required: true }
+})
+
 userSchema.plugin(passportLocalMongoose)
 
 mongoose.model('User', userSchema)
 mongoose.model('Clicks', clickSchema)
+mongoose.model('Currency', currencySchema)
