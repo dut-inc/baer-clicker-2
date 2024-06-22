@@ -8,6 +8,7 @@ import paenut from '../assets/paenut.png'
 import saelmon from '../assets/saelmon.png'
 import uraenium from '../assets/uraenium.png'
 import woerm from '../assets/woerm.png'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   let [data, setData] = useState({});
@@ -81,13 +82,13 @@ function App() {
     setData({ clicks: curr_clicks + 1 })
   }
 
-  // const huntResult = () => {
-  //   for (let food in foodInfo) {
-  //     let chance = foodInfo[food][0]
-  //     let rand = Math.random()*100
-  //     foodInfo[food][2] = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
-  //   }
-  // }
+  const huntResult = () => {
+    for (let food in foodInfo) {
+      let chance = foodInfo[food][0]
+      let rand = Math.random()*100
+      foodInfo[food][2] = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
+    }
+  }
 
 
   const foodList = [
