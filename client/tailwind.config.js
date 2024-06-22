@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     colors: {
       text: "#141C11",
-      textalt: "#FBFEFF",
+      textalt: "#EAF1F3",
       wood: "#733F1A",
       woodsecondary: "#DA9432",
       leaveslight: "#E7E8A6",
