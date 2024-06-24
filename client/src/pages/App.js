@@ -95,10 +95,10 @@ function App() {
     { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now...", 
     image: woerm, unlocked: true },
     { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition.", 
-    image: baerry, unlocked: false },
+    image: baerry, unlocked: true },
     { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious.", 
     image: paenut, unlocked: false }, 
-    { title: "Gyatch", levelInfo: "Lvl 1: 100% Gyat", description: "Have you seen Yinlin bro oh my lord", 
+    { title: "Gyaetch", levelInfo: "Lvl 1: 100% Gyaet", description: "Have you seen Yinlin bro oh my lord", 
     image: gyaetch, unlocked: false },
     { title: "Nickael", levelInfo: "Lvl 1: 10% Success", description: "Eating nickael reminds the baer of his best friend.", 
     image: nickael, unlocked: false },
@@ -116,8 +116,9 @@ function App() {
           <div className='border-leavesdark border-4 h-screen w-[60%] float-left'>
             <div ref = {clickRef}>{data.clicks}</div>
             <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
+            <div class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button"/>
           </div>
-          <div className='flex flex-col border-4 border-leavesdark bg-wood h-screen overflow-y-scroll'>
+          <div className='flex flex-col border-4 border-leavesdark bg-wood h-screen overflow-y-auto overflow-hidden'>
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
