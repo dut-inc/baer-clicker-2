@@ -84,27 +84,27 @@ function App() {
 
   const huntResult = () => {
     for (let food in foodInfo) {
-      let chance = foodInfo[food][0]
+      let chance = food.chance
       let rand = Math.random()*100
-      foodInfo[food][2] = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
+      food.count = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
     }
   }
 
 
   const foodList = [
-    { title: "Woerm", levelInfo: "Lvl 1: 100% Success", description: "Not much, but it'll have to do for now...", 
-    image: woerm, unlocked: true },
-    { title: "Baerry", levelInfo: "Lvl 1: 50% Success", description: "The basic source of any strong baer's nutrition.", 
+    { title: "Woerm", level: 1, count: 0, chance: 100, description: "Not much, but it'll have to do for now...", 
+    image: woerm, unlocked: true  },
+    { title: "Baerry", level: 1, count: 0, chance:50, description: "The basic source of any strong baer's nutrition.", 
     image: baerry, unlocked: true },
-    { title: "Paenutz", levelInfo: "Lvl 1: 25% Success", description: "Laughably small, yet highly nutritious.", 
+    { title: "Paenutz", level: 1, count: 0, chance: 25, description: "Laughably small, yet highly nutritious.", 
     image: paenut, unlocked: false }, 
-    { title: "Gyaetch", levelInfo: "Lvl 1: 100% Gyaet", description: "Have you seen Yinlin bro oh my lord", 
+    { title: "Gyaetch", level: 1, count: 0, chance: 100, description: "Have you seen Yinlin bro oh my lord", 
     image: gyaetch, unlocked: false },
-    { title: "Nickael", levelInfo: "Lvl 1: 10% Success", description: "Eating nickael reminds the baer of his best friend.", 
+    { title: "Nickael", level: 1, count: 0, chance: 10, description: "Eating nickael reminds the baer of his best friend.", 
     image: nickael, unlocked: false },
-    { title: "Saelmon", levelInfo: "Lvl 1: 5% Success", description: "Papa Baer always said saelmon made you smarter.", 
+    { title: "Saelmon", level: 1, count: 0, chance: 5, description: "Papa Baer always said saelmon made you smarter.", 
     image: saelmon, unlocked: false },
-    { title: "Uraenium", levelInfo: "Lvl 1: 0.5% Success", description: "Just a little bite wouldn't hurt, right?", 
+    { title: "Uraenium", level: 1, count: 0, chance: 0.5, description: "Just a little bite wouldn't hurt, right?", 
     image: uraenium, unlocked: false }
   ]
   
@@ -116,7 +116,6 @@ function App() {
           <div className='border-leavesdark border-4 h-screen w-[60%] float-left bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
             <div ref = {clickRef}>{data.clicks}</div>
             <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
-            <div class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button"/>
           </div>
           <div className='flex flex-col border-4 border-leavesdark bg-wood h-screen overflow-y-auto overflow-hidden'>
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
