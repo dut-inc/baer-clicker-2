@@ -15,11 +15,22 @@ function App() {
   let [user, setUser] = useState()
   const clickRef = useRef(0) // keeps track of clicks displayed
   const navigate = useNavigate();
-  let foodInfo = {
-    //chance,calories,count
-    woerm: [350,1,-1],
-    baerry: [50, 10, -1]
-  };
+  let [foodList, setFoodList] = useState([
+    { title: "Woerm", level: 1, value: 1, chance: 100, cost: 10, baseValue: 1, baseChance: 100, baseCost: 10, description: "Not much, but it'll have to do for now...", 
+    image: woerm, unlocked: true  },
+    { title: "Baerry", level: 1, value: 5, chance: 50, cost: 50, baseValue: 5, baseChance: 50, baseCost: 50, description: "The basic source of any strong baer's nutrition.", 
+    image: baerry, unlocked: true },
+    { title: "Paenutz", level: 1, value: 10, chance: 25, cost: 100, baseValue: 10, baseChance: 25, baseCost: 100, description: "Laughably small, yet highly nutritious.", 
+    image: paenut, unlocked: false }, 
+    { title: "Gyaetch", level: 1, value: 20, chance: 15, cost: 200, baseValue: 20, baseChance: 15, baseCost: 200, description: "Have you seen Yinlin bro oh my lord", 
+    image: gyaetch, unlocked: false },
+    { title: "Nickael", level: 1, value: 50, chance: 10, cost: 500, baseValue: 50, baseChance: 10, baseCost: 500, description: "Eating nickael reminds the baer of his best friend.", 
+    image: nickael, unlocked: false },
+    { title: "Saelmon", level: 1, value: 100, chance: 5, cost: 1000, baseValue: 100, baseChance: 5, baseCost: 1000, description: "Papa Baer always said saelmon made you smarter.", 
+    image: saelmon, unlocked: false },
+    { title: "Uraenium", level: 1, value: 250, chance: 0.5, cost: 2500, baseValue: 250, baseChance: 0.5, baseCost: 2500, description: "Just a little bite wouldn't hurt, right?", 
+    image: uraenium, unlocked: false }
+  ])
   // !check auth
   // useEffect(() => {
   //   const user = localStorage.getItem("user")
@@ -55,7 +66,7 @@ function App() {
     }
   }, [])
 
-  useEffect(() => { // update to server everry set interval
+  useEffect(() => { // update to server every set interval
 
     console.log(`initializing interval`);
     const user = localStorage.getItem('user')
@@ -68,45 +79,32 @@ function App() {
         },
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
-    }, 5000); // 1000 is 1 second
+    }, 3000); // 1000 is 1 second
   
     return () => {
       console.log(`clearing interval`);
       clearInterval(interval);
     };
-}, []); 
+  }, []); 
+
+  useEffect(() => {
+    if (data.clicks) {
+      setData({clicks: data.clicks})
+    }
+  }, [data.clicks])
 
   const handleClick = () => {
     huntResult()
-    const curr_clicks = data.clicks
-    setData({ clicks: curr_clicks + 1 })
   }
 
   const huntResult = () => {
-    for (let food in foodInfo) {
+    foodList.forEach(food => {
       let chance = food.chance
       let rand = Math.random()*100
-      food.count = Math.trunc(chance/100) + (chance%100 <= rand ? 1 : 0)
-    }
+      //increase clicks by value * count rolled
+      setData({clicks: (data.clicks += food.value*(Math.trunc(chance/100) + (chance%100 >= rand ? 1 : 0)))})
+    })
   }
-
-
-  const foodList = [
-    { title: "Woerm", level: 1, count: 0, chance: 100, description: "Not much, but it'll have to do for now...", 
-    image: woerm, unlocked: true  },
-    { title: "Baerry", level: 1, count: 0, chance:50, description: "The basic source of any strong baer's nutrition.", 
-    image: baerry, unlocked: true },
-    { title: "Paenutz", level: 1, count: 0, chance: 25, description: "Laughably small, yet highly nutritious.", 
-    image: paenut, unlocked: false }, 
-    { title: "Gyaetch", level: 1, count: 0, chance: 100, description: "Have you seen Yinlin bro oh my lord", 
-    image: gyaetch, unlocked: false },
-    { title: "Nickael", level: 1, count: 0, chance: 10, description: "Eating nickael reminds the baer of his best friend.", 
-    image: nickael, unlocked: false },
-    { title: "Saelmon", level: 1, count: 0, chance: 5, description: "Papa Baer always said saelmon made you smarter.", 
-    image: saelmon, unlocked: false },
-    { title: "Uraenium", level: 1, count: 0, chance: 0.5, description: "Just a little bite wouldn't hurt, right?", 
-    image: uraenium, unlocked: false }
-  ]
   
     return (
         <div>
@@ -121,7 +119,7 @@ function App() {
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
-           <UpgradeModule foods={foodList}/>
+           <UpgradeModule foods={foodList} data={data} setData={setData}/>
           </div>
         </div>
     );
