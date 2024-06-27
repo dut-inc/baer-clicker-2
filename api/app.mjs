@@ -86,5 +86,14 @@ app.post('/login', passport.authenticate('local', { }), async function(req, res)
     res.json({ user: req.session.passport.user })
 });
 
+app.post('/register', function (req, res, next) {
+    User.register({ username: req.body.username, active: false }, req.body.password, (err) => {
+        if (err) {
+            return res.json({ status: false })
+        }
+        return res.json({ status: true })
+    })
+})
+
 const port = process.env.PORT || 3001
 app.listen(port, () => {console.log(`Server is listening on ${port}`)})
