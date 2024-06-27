@@ -24,14 +24,6 @@ function Login() {
         } else {
             setStatus("LOGIN FAILED")
         }
-
-    //   if (user.user) {
-    //     localStorage.setItem('user', user.user.username)
-    //     navigate("/")
-    //   } else {
-    //     setStatus("LOGIN FAILED")
-    //   }
-    //   console.log(user.user)
     }
 
     const navRegister = () => {
