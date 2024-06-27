@@ -36,7 +36,11 @@ function App() {
     try {
       const user = localStorage.getItem('user')
       console.log("GETTING INITIAL DATA")
-      const response = await fetch(`http://127.0.0.1:3001/?user=${user}`)
+      const response = await fetch(`http://127.0.0.1:3001/?user=${user}`, { 
+        method: "GET",
+        credentials: 'include', 
+        mode: "cors"
+      })
       const newData = await response.json()
       setData(newData)
     } catch (error) {
@@ -64,8 +68,11 @@ function App() {
       const response = await fetch('http://127.0.0.1:3001/click', {
         method: "post",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json', 
+          'Access-Control-Allow-Origin':'*'
         },
+        mode: "cors",
+        credentials: 'include', 
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
     }, 5000); // 1000 is 1 second
