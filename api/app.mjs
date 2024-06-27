@@ -21,8 +21,10 @@ app.use(cors(
     {
         "origin": ["http://localhost:3000","http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        credentials: true,
+        credentials: 'include',
         allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
+        "preflightContinue": false,
+        "optionsSuccessStatus": 204
     }
     ));
 
@@ -54,6 +56,7 @@ const findUser = async username => {
 }
 
 app.get('/', async (req, res) => {
+    console.log(req.session)
     const foundUser = await findUser(req.query.user)
     const userClicks = await Clicks.findOne({ user: foundUser._id })
     if (!userClicks) {
@@ -73,13 +76,14 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/click', async (req, res) => {
+    console.log(req.session)
     const newClicks = parseInt(req.body.clicks)
     const foundUser = await findUser(req.body.user)
     const updateClicks = await Clicks.findOneAndUpdate({ user: foundUser._id }, { clicks: newClicks })
 })
 
-app.post('/login', passport.authenticate('local', { session: true, failureRedirect: '/login', failureFlash: true }), function(req, res) {
-    res.json({ user: req.user })
+app.post('/login', passport.authenticate('local', { }), async function(req, res) {
+    res.json({ user: req.session.passport.user })
 });
 
 app.post('/register', function (req, res, next) {

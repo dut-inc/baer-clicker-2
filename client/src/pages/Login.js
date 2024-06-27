@@ -17,15 +17,13 @@ function Login() {
                 username: loginRef.current.value, 
                 password: passwordRef.current.value })
         })
-      const user = await response.json()
-
-      if (user.user) {
-        localStorage.setItem('user', user.user.username)
-        navigate("/")
-      } else {
-        setStatus("LOGIN FAILED")
-      }
-    //   console.log(user.user)
+        if (response.statusText !== "Unauthorized") {
+            const user = await response.json()
+            localStorage.setItem('user', user.user)
+            navigate("/")
+        } else {
+            setStatus("LOGIN FAILED")
+        }
     }
 
     const navRegister = () => {
