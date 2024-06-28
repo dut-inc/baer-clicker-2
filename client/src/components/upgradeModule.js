@@ -13,7 +13,7 @@ export default function BaerryModule({foods, data, setData}){
         true: "divide-y-4 divide-wood border-y-4 border-wood",
         false: "divide-y-4 divide-wood border-y-4 border-t-wood border-b-[#474747]"
     }
-    
+
     return (
         //grayscale last border if locked
         <div className={`${lastItemUnlocked[foods[foods.length-1].unlocked]}`}>
@@ -27,33 +27,47 @@ export default function BaerryModule({foods, data, setData}){
     function buyUpgrade(evt) {
         //get mouse target module name
         const id = evt.currentTarget.id
+        if (id == "Woerm") {
+            return;
+        }
         let tempList = foods
 
         //loop through and find id in list
         tempList.forEach((food) => {
             if (food.title === id) {
+                //check if user has enough calories
+                if (data.clicks <= food.cost) {
+                    console.log(evt.currentTarget.classList)
+                    evt.currentTarget.classList.add("animate-wiggle")
+                    return
+                }
                 //decrease clicks
                 setData({clicks: (data.clicks -= food.cost)})
-                //linear scaling should change
+                //linear scaling, should change
                 food.level += 1
                 food.chance += food.baseChance*0.1
                 food.cost += food.baseCost*0.1
+                food.unlocked = true
             }
         })
     }
 
+    
 
     function createModule(food){
         const grayscaleModule = {
-            true: 'flex border-wood',
-            false: 'flex border-wood grayscale'
+            true: 'flex border-wood upgradeModule',
+            false: 'flex border-wood grayscale upgradeModule'
         }
-    
+        console.log('created module')
         return (
-            <>
-            <div className={`${grayscaleModule[food.unlocked]}`} id={`${food.title}`} onClick={(evt) => buyUpgrade(evt)} >
+            <div className={`${grayscaleModule[food.unlocked]}`} 
+                id={`${food.title}`} 
+                onClick={(evt) => {buyUpgrade(evt)}}
+                onAnimationEnd={function(){this.classList.remove('animate-wiggle')}}
+                >
                 <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default 
-                bg-[#904B19] w-full text-center'>
+                bg-[#904B19] w-full text-center select-none'>
                     <h1 className='text-2xl'>{food.title} ({food.value})</h1>
                     <h2 className='text-base'>Lvl {food.level}: {food.chance}% Success Rate</h2>
                     <p className='text-sm'>{food.description}</p>
@@ -63,8 +77,7 @@ export default function BaerryModule({foods, data, setData}){
                     {/* <img className="object-scale-down ml-auto" src={basicBaer}/> */}
                 </div>
             </div>
-            </>
-        );
+        )
     }
 }
 

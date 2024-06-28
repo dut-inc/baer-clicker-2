@@ -49,8 +49,9 @@ function App() {
       console.log("GETTING INITIAL DATA")
       const response = await fetch(`http://127.0.0.1:3001/?user=${user}`, { 
         method: "GET",
-        credentials: 'include', 
-        mode: "cors"
+        //!uncomment for not firefox
+        // credentials: 'include', 
+        // mode: "cors"
       })
       const newData = await response.json()
       setData(newData)
@@ -79,11 +80,13 @@ function App() {
       const response = await fetch('http://127.0.0.1:3001/click', {
         method: "post",
         headers: {
+          //!uncomment for not firefox
           'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin':'*'
+          // 'Access-Control-Allow-Origin':'*'
         },
-        mode: "cors",
-        credentials: 'include', 
+        //!uncomment for not firefox
+        // mode: "cors",
+        // credentials: 'include', 
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
     }, 3000); // 1000 is 1 second
@@ -105,14 +108,18 @@ function App() {
   }
 
   const huntResult = () => {
+    if (!data.clicks) {
+      setData({clicks: data.clicks})
+      console.log("clicks updated")
+    }
     foodList.forEach(food => {
       let chance = food.chance
       let rand = Math.random()*100
-      //increase clicks by value * count rolled
+      //increase clicks by every 100% then random for extra
       setData({clicks: (data.clicks += food.value*(Math.trunc(chance/100) + (chance%100 >= rand ? 1 : 0)))})
     })
   }
-  
+
     return (
         <div>
           <Helmet>
