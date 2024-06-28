@@ -14,6 +14,10 @@ export default function BaerryModule({foods, data, setData}){
         false: "divide-y-4 divide-wood border-y-4 border-t-wood border-b-[#474747]"
     }
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     return (
         //grayscale last border if locked
         <div className={`${lastItemUnlocked[foods[foods.length-1].unlocked]}`}>
@@ -38,7 +42,9 @@ export default function BaerryModule({foods, data, setData}){
                 //check if user has enough calories
                 if (data.clicks <= food.cost) {
                     console.log(evt.currentTarget.classList)
-                    evt.currentTarget.classList.add("animate-wiggle")
+                    let current = evt.currentTarget.classList
+                    current.add("animate-wiggle")
+                    sleep(100).then(() => {current.remove("animate-wiggle")})
                     return
                 }
                 //decrease clicks
@@ -64,7 +70,7 @@ export default function BaerryModule({foods, data, setData}){
             <div className={`${grayscaleModule[food.unlocked]}`} 
                 id={`${food.title}`} 
                 onClick={(evt) => {buyUpgrade(evt)}}
-                onAnimationEnd={function(){this.classList.remove('animate-wiggle')}}
+                // onAnimationEnd={function(){this.classList.remove('animate-wiggle')}}
                 >
                 <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default 
                 bg-[#904B19] w-full text-center select-none'>

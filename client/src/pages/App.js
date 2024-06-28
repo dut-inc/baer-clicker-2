@@ -49,7 +49,7 @@ function App() {
       console.log("GETTING INITIAL DATA")
       const response = await fetch(`http://127.0.0.1:3001/?user=${user}`, { 
         method: "GET",
-        //!uncomment for not firefox
+        //!uncomment with no extension
         // credentials: 'include', 
         // mode: "cors"
       })
@@ -80,11 +80,11 @@ function App() {
       const response = await fetch('http://127.0.0.1:3001/click', {
         method: "post",
         headers: {
-          //!uncomment for not firefox
+          //!uncomment with extension
           'Content-Type': 'application/json', 
           // 'Access-Control-Allow-Origin':'*'
         },
-        //!uncomment for not firefox
+        //!uncomment with extension
         // mode: "cors",
         // credentials: 'include', 
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
