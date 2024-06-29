@@ -39,12 +39,12 @@ export default function BaerryModule({foods, data, setData}){
         //loop through and find id in list
         tempList.forEach((food) => {
             if (food.title === id) {
-                //check if user has enough calories
+                //deny if not enough calories
                 if (data.clicks <= food.cost) {
                     console.log(evt.currentTarget.classList)
                     let current = evt.currentTarget.classList
-                    current.add("animate-wiggle")
-                    sleep(100).then(() => {current.remove("animate-wiggle")})
+                    current.add("animate-wiggle", "opacity-25")
+                    sleep(100).then(() => {current.remove("animate-wiggle", "opacity-25")})
                     return
                 }
                 //decrease clicks
@@ -67,10 +67,9 @@ export default function BaerryModule({foods, data, setData}){
         }
         console.log('created module')
         return (
-            <div className={`${grayscaleModule[food.unlocked]}`} 
+            <div className={`${grayscaleModule[food.unlocked]} bg-[#F3170D]`} 
                 id={`${food.title}`} 
                 onClick={(evt) => {buyUpgrade(evt)}}
-                // onAnimationEnd={function(){this.classList.remove('animate-wiggle')}}
                 >
                 <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default 
                 bg-[#904B19] w-full text-center select-none'>
