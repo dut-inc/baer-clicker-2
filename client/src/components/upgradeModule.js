@@ -72,7 +72,7 @@ export default function BaerryModule({foods, data, setData}){
                 onClick={(evt) => {buyUpgrade(evt)}}
                 >
                 <div className='flex flex-col flex-wrap self-stretch border-wood border-x-4 font-default 
-                bg-[#904B19] w-full text-center select-none'>
+                bg-[#904B19] w-full text-center select-none h-min-[6rem]'>
                     <h1 className='text-2xl'>{food.title} ({food.value})</h1>
                     <h2 className='text-base'>Lvl {food.level}: {food.chance}% Success Rate</h2>
                     <p className='text-sm'>{food.description}</p>
