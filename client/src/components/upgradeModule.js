@@ -30,12 +30,15 @@ export default function UpgradeModule({foods, data, setData}){
         const id = evt.currentTarget.id
             if (foods.has(id)) {
                 let food = foods.get(id)
-                //deny if not enough calories
+                //deny if not enough calories or if woerm
                 if (data.clicks <= food.cost || id === "Woerm") {
-                    console.log(evt.currentTarget.classList)
-                    let current = evt.currentTarget.classList
-                    current.add("animate-wiggle", "opacity-25")
-                    sleep(100).then(() => {current.remove("animate-wiggle", "opacity-25")})
+                    let target = evt.currentTarget
+                    let targetList = target.classList
+                    //creates a red box over the module
+                    const redOverlay = createRedOverlay(target)
+                    targetList.add("animate-wiggle")
+                    //removes wiggle and red overlay after animation ends
+                    sleep(100).then(() => {targetList.remove("animate-wiggle");redOverlay.remove()})
                     return
                 }
                 //decrease clicks
@@ -49,7 +52,18 @@ export default function UpgradeModule({foods, data, setData}){
 
     }
 
-    
+    function createRedOverlay(target) {
+        let redOverlay = document.createElement("div")
+        redOverlay.style.position = "absolute"
+        redOverlay.style.left = target.offsetLeft + "px"
+        redOverlay.style.top = target.offsetTop + "px"
+        redOverlay.style.width = target.offsetWidth + "px"
+        redOverlay.style.height = target.offsetHeight + "px"
+        redOverlay.style.backgroundColor = "red"
+        redOverlay.style.opacity = 0.25
+        document.body.appendChild(redOverlay, target)
+        return redOverlay
+    }
 
     function createModule(title, food){
         return (

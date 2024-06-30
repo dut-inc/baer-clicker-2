@@ -100,6 +100,7 @@ function App() {
   useEffect(() => {
     if (data.clicks) {
       setData({clicks: data.clicks})
+      //update buyable on click update
       let modules = document.getElementsByClassName("upgradeModule")
       for (let module of modules) {
         let food = foodList.get(module.id)
@@ -141,7 +142,7 @@ function App() {
             <div ref = {clickRef}>{data.clicks}</div>
             <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
           </div>
-          <div className='flex flex-col border-4 border-leavesdark bg-[#F3170D] h-screen overflow-y-auto overflow-hidden overscroll-none'>
+          <div className='flex flex-col border-4 border-leavesdark bg-wood h-screen overflow-y-auto overflow-hidden overscroll-none'>
             <div className='border-4 border-leavesdark text-center bg-[#779025] font-default text-4xl'>
               Hunting
             </div>
