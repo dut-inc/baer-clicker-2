@@ -56,7 +56,7 @@ export default function UpgradeModule({foods, data, setData}){
         let redOverlay = document.createElement("div")
         redOverlay.style.position = "absolute"
         redOverlay.style.left = target.offsetLeft + "px"
-        redOverlay.style.top = target.offsetTop + "px"
+        redOverlay.style.top = target.offsetTop - target.parentElement.parentElement.scrollTop + "px"
         redOverlay.style.width = target.offsetWidth + "px"
         redOverlay.style.height = target.offsetHeight + "px"
         redOverlay.style.backgroundColor = "red"
