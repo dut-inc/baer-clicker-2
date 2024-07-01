@@ -31,16 +31,21 @@ function Login() {
     }
     
     return (<>
-        <div>
-            <button onClick={() => navRegister()}>
-                REGISTER
-            </button>
+        <div className="text-center width-screen">
+            BAER CLICKER (placeholder)
         </div>
         <div>
-            <input ref={loginRef} type="text" id="username" name="username" placeholder="username"></input> <br></br>
-            <input ref={passwordRef} type="text" id="password" name="password" placeholder="password"></input> <br></br>
-            <button onClick={() => authenticate()}type="submit">LOGIN</button> 
-            <p>{status}</p>
+            <div className="border-4 rounded-xl w-[50%] absolute object-center">
+                <input ref={loginRef} type="text" id="username" name="username" placeholder="username"></input> <br></br>
+                <input ref={passwordRef} type="text" id="password" name="password" placeholder="password"></input> <br></br>
+                <button onClick={() => authenticate()}type="submit">LOGIN</button> 
+                <div>
+                    <button className="bg-wood" onClick={() => navRegister()}>
+                        REGISTER
+                    </button>
+                </div>
+                <p>{status}</p>
+            </div>
         </div>
         </>
     )
