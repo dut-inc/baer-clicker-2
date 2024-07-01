@@ -75,11 +75,27 @@ app.get('/', async (req, res) => {
     }
 })
 
+app.options('/click', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+})
+
 app.post('/click', async (req, res) => {
-    console.log(req.session)
+    console.log(req.headers)
     const newClicks = parseInt(req.body.clicks)
+    if (!newClicks) {
+        res.status = 404
+        return
+    }
     const foundUser = await findUser(req.body.user)
+    if (!foundUser) {
+        res.status = 404
+        return
+    }
     const updateClicks = await Clicks.findOneAndUpdate({ user: foundUser._id }, { clicks: newClicks })
+    if (!updateClicks) {
+        res.status = 404
+        return
+    }
 })
 
 app.post('/login', passport.authenticate('local', { }), async function(req, res) {
