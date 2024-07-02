@@ -104,14 +104,8 @@ function App() {
       let modules = document.getElementsByClassName("upgradeModule")
       for (let module of modules) {
         let food = foodList.get(module.id)
-        if (data.clicks >= food.cost && module.id != "Woerm") {
-          food.buyable = true
-          foodList.set(module.id, food)
-        }
-        else {
-          food.buyable = false
-          foodList.set(module.id, food)
-        }
+        food.buyable = (data.clicks >= food.cost && module.id != "Woerm")
+        foodList.set(module.id, food)
       }
     }
   }, [data.clicks])
