@@ -28,28 +28,28 @@ export default function UpgradeModule({foods, data, setData}){
     function buyUpgrade(evt) {
         //get mouse target module name
         const id = evt.currentTarget.id
-            if (foods.has(id)) {
-                let food = foods.get(id)
-                //deny if not enough calories or if woerm
-                if (data.clicks <= food.cost || id === "Woerm") {
-                    let target = evt.currentTarget
-                    let targetList = target.classList
-                    //creates a red box over the module
-                    const redOverlay = createRedOverlay(target)
-                    targetList.add("animate-wiggle")
-                    //removes wiggle and red overlay after animation ends
-                    sleep(100).then(() => {targetList.remove("animate-wiggle");redOverlay.remove()})
-                    return
-                }
-                //decrease clicks
-                setData({clicks: (data.clicks -= food.cost)})
-                //linear scaling, should change
-                food.level += 1
-                food.chance += food.baseChance*0.1
-                food.cost += food.baseCost*0.1
-                food.unlocked = true
+            let food = foods.get(id)
+            if (food == null) {
+                return
             }
-
+            //deny if not enough calories or if woerm
+            if (data.clicks <= food.cost || id === "Woerm") {
+                let target = evt.currentTarget
+                let targetList = target.classList
+                //creates a red box over the module
+                const redOverlay = createRedOverlay(target)
+                targetList.add("animate-wiggle")
+                //removes wiggle and red overlay after animation ends
+                sleep(100).then(() => {targetList.remove("animate-wiggle");redOverlay.remove()})
+                return
+            }
+            //decrease clicks
+            setData({clicks: (data.clicks -= food.cost)})
+            //linear scaling, should change
+            food.level += 1
+            food.chance += food.baseChance*0.1
+            food.cost += food.baseCost*0.1
+            food.unlocked = true
     }
 
     function createRedOverlay(target) {
