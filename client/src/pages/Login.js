@@ -29,21 +29,19 @@ function Login() {
     const navRegister = () => {
         navigate("/register")
     }
-    
+
     return (<>
-        <div className="text-center width-screen">
-            BAER CLICKER (placeholder)
-        </div>
-        <div>
-            <div className="border-4 rounded-xl w-[50%] absolute object-center">
-                <input ref={loginRef} type="text" id="username" name="username" placeholder="username"></input> <br></br>
-                <input ref={passwordRef} type="text" id="password" name="password" placeholder="password"></input> <br></br>
-                <button onClick={() => authenticate()}type="submit">LOGIN</button> 
-                <div>
-                    <button className="bg-wood" onClick={() => navRegister()}>
-                        REGISTER
+        <div className="flex overscroll-none w-screen h-screen">
+            <div className="flex flex-col border-r-2 w-[30%] h-[screen] object-center justify-center items-center">
+                <input className=" w-full border-2 rounded-md p-2" ref={loginRef} type="text" id="username" name="username" placeholder="username"></input> <br></br>
+                <input className="w-full border-2 rounded-md p-2" ref={passwordRef} type="text" id="password" name="password" placeholder="password"></input> <br></br>
+                <button className="border-2 rounded-md p-2" onClick={() => authenticate()}type="submit">LOGIN</button>
+                <div className="m-3 flex flex-row self-end">
+                    <p>Don't have an account? Register&nbsp;</p> 
+                    <button className="underline text-[#0000EE]" onClick={() => navRegister()}>
+                    here
                     </button>
-                </div>
+                </div>            
                 <p>{status}</p>
             </div>
         </div>
