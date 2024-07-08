@@ -28,7 +28,6 @@ app.use(cors(
 
 const User = mongoose.model('User')
 const Clicks = mongoose.model('Clicks')
-const Currency = mongoose.model('Currency')
 
 app.use(session({
     secret: "BAERBALEJOEIFJOSIEJF",
@@ -60,21 +59,38 @@ app.get('/', async (req, res) => {
     if (!userClicks) {
         const newClicks = new Clicks({
             clicks: 0,
+            woerms: 0,
+            spiritBaers: 0,
+            rainbowTrouts: 0,
             user: foundUser._id
         })
         newClicks.save()
         .then(() => {
-            res.json({ clicks: 0 })
+            res.json({ 
+                clicks: 0,
+                woerms: 0,
+                spiritBaers: 0,
+                rainbowTrouts: 0
+             })
         }).catch((err) => {
             console.log(err)
         })
+
     } else {
-        res.json({ clicks: userClicks.clicks })
+        res.json({ 
+            clicks: userClicks.clicks,
+            woerms: userClicks.woerms,
+            spiritBaers: userClicks.spiritBaers,
+            rainbowTrouts: userClicks.rainbowTrouts
+        })
     }
 })
 
 app.post('/click', async (req, res) => {
     const newClicks = parseInt(req.body.clicks)
+    // const newWoerms = parseInt(req.body.woerms)
+    // const newSpiritBaers = parseInt(req.body.spiritBaers)
+    // const newRainbowTrouts = parseInt(req.body.rainbowTrouts)
     const foundUser = await findUser(req.body.user)
     const updateClicks = await Clicks.findOneAndUpdate({ user: foundUser._id }, { clicks: newClicks })
 })
@@ -91,6 +107,7 @@ app.post('/register', function (req, res, next) {
         return res.json({ status: true })
     })
 })
+
 
 const port = process.env.PORT || 3001
 app.listen(port, () => {console.log(`Server is listening on ${port}`)})
