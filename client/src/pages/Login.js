@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import RegisterButton from '../components/registerButton';
 
 function Login() {
     const [status, setStatus] = useState('')
@@ -33,15 +34,16 @@ function Login() {
     return (<>
         <div className="flex overscroll-none w-screen h-screen bg-[url('./assets/loginBackground.gif')] bg-cover">
             <div className="flex flex-col text-textalt px-10 py-6 w-[30%] h-[screen] object-center justify-center items-center bg-[rgba(43,43,43,0.6)]">
-                <div>placeholder - baer clicker logo</div>
+                <div className="font-default">placeholder: baer clicker logo</div>
                 <div className="mr-auto mt-auto my-4 font-default text-4xl">Sign in</div>
                 <input className="w-full p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={loginRef} type="text" id="username" name="username" placeholder="Username"></input> <br></br>
                 <input className="w-full p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={passwordRef} type="password" id="password" name="password" placeholder="Password"></input> <br></br>
                 <button className="p-2 font-default w-[30%] hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => authenticate()}type="submit">Log In</button>
                 <div className="mt-auto flex flex-row w-[100%]">
-                    <button className="w-[50%] p-2 text-center mr-8 font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => navRegister()}>
+                    {/* <button className="w-[50%] p-2 text-center mr-8 font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => navRegister()}>
                     Sign up
-                    </button>   
+                    </button>    */}
+                    <RegisterButton></RegisterButton>
                     <button className="w-[50%] p-2 ml-auto text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50">
                     Forgot Password?
                     </button>
