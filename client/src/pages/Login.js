@@ -13,6 +13,7 @@ function Login() {
             headers: {
             'Content-Type': 'application/json'
             },
+            credentials: 'include', 
             body: JSON.stringify({ 
                 username: loginRef.current.value, 
                 password: passwordRef.current.value })

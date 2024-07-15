@@ -15,16 +15,17 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(cors(
     {
-        "origin": ["http://localhost:3000","http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"],
+        origin: "http://localhost:3000", 
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        credentials: 'include',
-        allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
+        credentials: true, 
+        allowedHeaders: ['Origin', "X-Requested-With", "Content-Type", "Accept"],
         "preflightContinue": false,
-        "optionsSuccessStatus": 204
+        "optionsSuccessStatus": 200
     }
     ));
 
@@ -34,12 +35,13 @@ const Clicks = mongoose.model('Clicks')
 app.use(session({
     secret: "BAERBALEJOEIFJOSIEJF",
     resave: false,
-    saveUninitialized: true, 
-    cookie: { 
-        secure: false, 
-        maxAge: 3600000,
-        expires: new Date(Date.now() + 3600000) 
-    }
+    saveUninitialized: false, 
+    // cookie: { 
+    //     secure: false, 
+    //     maxAge: 3600000,
+    //     expires: new Date(Date.now() + 3600000), 
+    //     // SameSite: "None"
+    // }
 }))
 
 app.use(passport.initialize())
@@ -56,8 +58,9 @@ const findUser = async username => {
 }
 
 app.get('/', async (req, res) => {
-    console.log(req.session)
+    // console.log(req.session)
     const foundUser = await findUser(req.query.user)
+    console.log(foundUser)
     const userClicks = await Clicks.findOne({ user: foundUser._id })
     if (!userClicks) {
         const newClicks = new Clicks({
@@ -66,24 +69,35 @@ app.get('/', async (req, res) => {
         })
         newClicks.save()
         .then(() => {
+            // res.status(200)
             res.json({ clicks: 0 })
         }).catch((err) => {
             console.log(err)
         })
     } else {
+        // res.status(200)
         res.json({ clicks: userClicks.clicks })
     }
 })
 
 app.post('/click', async (req, res) => {
+    console.log("Click")
+    console.log(req.user)
     console.log(req.session)
-    const newClicks = parseInt(req.body.clicks)
-    const foundUser = await findUser(req.body.user)
-    const updateClicks = await Clicks.findOneAndUpdate({ user: foundUser._id }, { clicks: newClicks })
+    // const newClicks = parseInt(req.body.clicks)
+    // const foundUser = await findUser(req.body.user)
+    // const updateClicks = await Clicks.findOneAndUpdate({ user: foundUser._id }, { clicks: newClicks })
+    res.status(200).json({ hello: 'Hello'})
 })
 
-app.post('/login', passport.authenticate('local', { }), async function(req, res) {
-    res.json({ user: req.session.passport.user })
+app.post('/login', passport.authenticate('local', {keepSessionInfo: true}), function(req, res) {
+    console.log("Login")
+    console.log(req.session)
+    const user = req.session.passport.user
+    req.logIn(user, function (err) { // <-- Log user in
+        return res.json({ user })
+     });
+    // res.json({ user: req.session.passport.user })
 });
 
 app.post('/register', function (req, res, next) {

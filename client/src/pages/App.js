@@ -47,12 +47,24 @@ function App() {
     try {
       const user = localStorage.getItem('user')
       console.log("GETTING INITIAL DATA")
-      const response = await fetch(`http://127.0.0.1:3001/?user=${user}`, { 
+      const response = await fetch(`http://baer.local:3001/?user=${user}`, { 
         method: "GET",
         //!uncomment with no extension
         // credentials: 'include', 
         // mode: "cors"
       })
+      // const response = await fetch('http://baer.local:3001/', {
+      //   method: "post",
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json',
+      //     'Access-Control-Allow-Origin': 'http://baer.local:3000/'
+      // },
+      //   //!uncomment with extension
+      //   // mode: "cors",
+      //   credentials: 'include', 
+      //   // body: JSON.stringify({ user, clicks: clickRef.current.textContent })
+      // })
       const newData = await response.json()
       setData(newData)
     } catch (error) {
@@ -77,18 +89,20 @@ function App() {
     const user = localStorage.getItem('user')
     const interval = setInterval(async () => {
       // console.log(clickRef.current.textContent)
-      const response = await fetch('http://127.0.0.1:3001/click', {
+      const response = await fetch('http://baer.local:3001/click', {
         method: "post",
         headers: {
-          //!uncomment with extension
-          'Content-Type': 'application/json', 
-          // 'Access-Control-Allow-Origin':'*'
-        },
+          'Content-Type': 'application/json',
+          // 'Accept': 'application/json',
+          // 'Access-Control-Allow-Origin': 'http://baer.local:3000/'
+      },
         //!uncomment with extension
         // mode: "cors",
-        // credentials: 'include', 
+        credentials: 'include', 
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
+      // const res = await response.json()
+      // console.log(res)
     }, 3000); // 1000 is 1 second
   
     return () => {
