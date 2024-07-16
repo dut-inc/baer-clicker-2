@@ -59,7 +59,7 @@ function logout() {
 
 }
 
-function Register() {
+export default function Register() {
     const [status, setStatus] = useState()
     const navigate = useNavigate();
     const userRef = useRef('')
@@ -90,20 +90,20 @@ function Register() {
 
     return (<>
         <div>
-            <button onClick={() => navLogin()}>
-            <h2 className="font-header text-3xl shadow p-3 rounded-lg">LOGIN BUTTON</h2>
-            </button>
             <div class="flex justify-center">
-                <h2 class="font-header text-7xl">Register New user</h2>
+                <h2 class="font-default text-4xl">Register</h2>
             </div>
         </div>
-        <div class="grid grid-rows-2 p-20 gap-3">
-            <input class="p-3 bg-white shadow rounded-lg" ref={userRef} type="text" id="username" name="usernameRegister" placeholder="username"></input>
-            <input class="p-3 bg-white shadow rounded-lg" ref={pwRef} type="text" id="password" name="passwordRegister" placeholder="password"></input>
-            <div class="flex justify-center">
-                <button class="p-3 bg-white shadow w-1/5 rounded-lg" onClick={() => registry()}type="submit">
+        <div class="grid grid-rows-2">
+            <input class="my-2 p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={userRef} type="text" id="username" name="usernameRegister" placeholder="username"></input>
+            <input class="my-2 p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={pwRef} type="text" id="password" name="passwordRegister" placeholder="password"></input>
+            <div class="mt-auto flex flex-row w-[100%]">
+                <button class="w-[50%] p-2 mr-8 text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => registry()}type="submit">
                 REGISTER
                 </button> 
+                <button className="w-[50%] p-2 ml-auto text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => navLogin()}>
+                Back to Login
+                </button>
             </div>
             <p>{status}</p> <br></br>
         </div>
