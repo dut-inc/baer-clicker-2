@@ -28,6 +28,7 @@ app.use(cors(
 
 const User = mongoose.model('User')
 const Clicks = mongoose.model('Clicks')
+const Upgrades = mongoose.model('Upgrades')
 
 app.use(session({
     secret: "BAERBALEJOEIFJOSIEJF",
@@ -59,33 +60,56 @@ app.get('/', async (req, res) => {
     if (!userClicks) {
         const newClicks = new Clicks({
             clicks: 0,
-            woerms: 0,
+            woermCurrencies: 0,
             spiritBaers: 0,
             rainbowTrouts: 0,
             user: foundUser._id
         })
-        newClicks.save()
-        .then(() => {
-            res.json({ 
-                clicks: 0,
-                woerms: 0,
-                spiritBaers: 0,
-                rainbowTrouts: 0
-             })
-        }).catch((err) => {
-            console.log(err)
+        await newClicks.save()
+
+        const newUpgrades = new Upgrades({
+            woermUpgrades: 0,
+            baerrys: 0,
+            paenutz: 0,
+            gyatchs: 0,
+            nickaels: 0,
+            saelmons: 0,
+            uraeniums: 0,
+        })
+        await newUpgrades.save()
+        res.json({
+            clicks: 0,
+            woermCurrencies: 0,
+            spiritBaers: 0,
+            rainbowTrouts: 0,
+            woermUpgrades: 0,
+            baerrys: 0,
+            paenutz: 0,
+            gyatchs: 0,
+            nickaels: 0,
+            saelmons: 0,
+            uraeniums: 0
         })
 
     } else {
+        const userUpgrades = await Upgrades.findOne({ user: foundUser._id })
         res.json({ 
             clicks: userClicks.clicks,
-            woerms: userClicks.woerms,
+            woermsCurrencies: userClicks.woerms,
             spiritBaers: userClicks.spiritBaers,
-            rainbowTrouts: userClicks.rainbowTrouts
+            rainbowTrouts: userClicks.rainbowTrouts,
+            woermUpgrades: userUpgrades.woermUpgrades,
+            baerrys: userUpgrades.baerrys,
+            paenutz: userUpgrades.paenutz,
+            gyatchs: userUpgrades.gyatchs,
+            nickaels: userUpgrades.nickaels,
+            saelmons: userUpgrades.saelmons,
+            uraeniums: userUpgrades.uraeniums
         })
     }
 })
 
+//TODO: update still needs to be changed
 app.post('/click', async (req, res) => {
     const newClicks = parseInt(req.body.clicks)
     // const newWoerms = parseInt(req.body.woerms)
