@@ -84,10 +84,6 @@ export default function Register() {
         }
     }
 
-    const navLogin = () => {
-        navigate("/login")
-    }
-
     return (<>
         <div>
             <div class="flex justify-center">
@@ -97,14 +93,9 @@ export default function Register() {
         <div class="grid grid-rows-2">
             <input class="my-2 p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={userRef} type="text" id="username" name="usernameRegister" placeholder="username"></input>
             <input class="my-2 p-2 font-default hover:bg-[#000000]/80 focus:bg-[#000000]/80 focus:outline-none bg-[rgba(0,0,0,0.6)]" ref={pwRef} type="text" id="password" name="passwordRegister" placeholder="password"></input>
-            <div class="mt-auto flex flex-row w-[100%]">
-                <button class="w-[50%] p-2 mr-8 text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => registry()}type="submit">
+            <button class="w-[50%] p-2 my-2 m-auto text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => registry()}type="submit">
                 REGISTER
-                </button> 
-                <button className="w-[50%] p-2 ml-auto text-center font-default hover:bg-[#000000]/80 bg-[#000000]/50" onClick={() => navLogin()}>
-                Back to Login
-                </button>
-            </div>
+            </button> 
             <p>{status}</p> <br></br>
         </div>
         </>

@@ -37,15 +37,25 @@ const RegisterButton = () => {
         <div className="fixed inset-0 bg-[#000000]/60 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
           <div 
             ref={popupRef}
-            className="bg-[#554545] p-5 rounded-lg shadow-xl relative w-96 h-96 max-w-md max-h-md"
+            className="flex flex-col bg-[#554545] p-5 rounded-lg shadow-xl relative max-w-md max-h-md"
           >
             <button
               onClick={hidePopup}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+              className="absolute top-2 right-2 text-gray-600 font-default hover:text-gray-800 text-xl"
             >
               &times;
             </button>
             <Register></Register>
+            <div className="flex flex-row -mt-4 m-auto font-default">
+                <p>Already have an account? Login&nbsp;</p>
+                <button 
+                  onClick={hidePopup}
+                  className="font-default underline"
+                >
+                here
+                </button>
+            </div>
+            
           </div>
         </div>
       )}
