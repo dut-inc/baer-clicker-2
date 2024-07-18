@@ -49,7 +49,7 @@ function App() {
       console.log("GETTING INITIAL DATA")
       const response = await fetch(`http://127.0.0.1:3001/?user=${user}`, { 
         method: "GET",
-        credentials: 'include', 
+        //credentials: "include", 
         mode: "cors"
       })
       const newData = await response.json()
@@ -80,10 +80,10 @@ function App() {
         method: "post",
         headers: {
           'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin':'*'
+          // 'Access-Control-Allow-Origin':'*'
         },
         mode: "cors",
-        credentials: 'include', 
+        // credentials: true, 
         body: JSON.stringify({ user, clicks: clickRef.current.textContent })
       })
     }, 3000); // 1000 is 1 second
@@ -118,7 +118,18 @@ function App() {
           <Helmet>
                 <style>{'body { background-color: white; }'}</style>
             </Helmet>
-          <div className='border-leavesdark border-4 h-screen w-[60%] float-left bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
+          <div className='flex flex-col border-leavesdark border-4 h-screen w-[60%] float-left .bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
+            <div className="border-wood border-4 h-[6.5%] bg-[#884B20] flex flex-row">
+              <div className="w-1/3 border-2 h-full p-2">
+
+              </div>
+              <div className="w-1/3 border-2 h-full p-2">
+
+              </div>
+              <div className="w-1/3 border-2 h-full p-2">
+
+              </div>
+            </div>
             <div ref = {clickRef}>{data.clicks}</div>
             <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
           </div>

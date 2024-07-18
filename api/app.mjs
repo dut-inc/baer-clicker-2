@@ -21,8 +21,9 @@ app.use(cors(
     {
         "origin": ["http://localhost:3000","http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        credentials: 'include',
-        allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
+        credentials: true,
+        allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+        "Access-Control-Allow-Credentials": true,
         "preflightContinue": false,
         "optionsSuccessStatus": 204
     }
