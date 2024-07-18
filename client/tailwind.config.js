@@ -9,6 +9,7 @@ module.exports = {
       woodsecondary: "#DA9432",
       leaveslight: "#E7E8A6",
       leavesdark: "#5C6B28",
+      fadedgray: "#808080",
     },
     extend: {
       fontFamily: {
