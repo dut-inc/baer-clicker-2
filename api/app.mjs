@@ -79,6 +79,7 @@ app.get('/', async (req, res) => {
             nickaels: 0,
             saelmons: 0,
             uraeniums: 0,
+            user: foundUser._id
         })
         await newUpgrades.save()
         res.json({
