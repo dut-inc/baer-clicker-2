@@ -9,11 +9,21 @@ module.exports = {
       woodsecondary: "#DA9432",
       leaveslight: "#E7E8A6",
       leavesdark: "#5C6B28",
+      fadedgray: "#808080",
     },
     extend: {
       fontFamily: {
         default: ["MedievalSharp", "sans-serif"],
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        }
+      },
+      animation: {
+        wiggle: "wiggle 100ms ease-in-out"
+      }
     },
   },
   plugins: [],
