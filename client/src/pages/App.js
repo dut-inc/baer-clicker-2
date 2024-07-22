@@ -119,15 +119,18 @@ function App() {
                 <style>{'body { background-color: white; }'}</style>
             </Helmet>
           <div className='flex flex-col border-leavesdark border-4 h-screen w-[60%] float-left .bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
-            <div className="border-wood border-4 h-[6.5%] bg-[#884B20] flex flex-row">
-              <div className="w-1/3 border-2 h-full p-2">
-
+            <div className="h-[6.5%] w-full flex flex-row ml-auto">
+              <div className="w-1/4 border-2 h-full p-2">
+                {localStorage.getItem('user')}
               </div>
-              <div className="w-1/3 border-2 h-full p-2">
-
+              <div className="w-1/4 border-2 h-full p-2">
+                Woerms
               </div>
-              <div className="w-1/3 border-2 h-full p-2">
-
+              <div className="w-1/4 border-2 h-full p-2">
+                Spirit Baers
+              </div>
+              <div className="w-1/4 border-2 h-full p-2">
+                Rainbow Trout
               </div>
             </div>
             <div ref = {clickRef}>{data.clicks}</div>
