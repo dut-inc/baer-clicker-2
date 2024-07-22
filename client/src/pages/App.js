@@ -51,7 +51,6 @@ function App() {
         method: "GET",
         //!uncomment with no extension
         // credentials: 'include', 
-        // mode: "cors"
       })
       const newData = await response.json()
       setData(newData)
@@ -138,7 +137,21 @@ function App() {
           <Helmet>
                 <style>{'body { background-color: white; }'}</style>
             </Helmet>
-          <div className='border-leavesdark border-4 h-screen w-[60%] float-left bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
+          <div className='flex flex-col border-leavesdark border-4 h-screen w-[60%] float-left .bg-[url("./assets/clickerBG.png")] bg-cover bg-bottom bg-no-repeat'>
+            <div className="h-[6.5%] w-full flex flex-row ml-auto">
+              <div className="w-1/4 border-2 h-full p-2">
+                {localStorage.getItem('user')}
+              </div>
+              <div className="w-1/4 border-2 h-full p-2">
+                Woerms
+              </div>
+              <div className="w-1/4 border-2 h-full p-2">
+                Spirit Baers
+              </div>
+              <div className="w-1/4 border-2 h-full p-2">
+                Rainbow Trout
+              </div>
+            </div>
             <div ref = {clickRef}>{data.clicks}</div>
             <img class="object-contain h-48 w-96 bg-white shadow rounded-lg" src="link" alt="dynamic button" onClick={() => handleClick()}/>
           </div>
